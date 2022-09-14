@@ -1,6 +1,7 @@
 import {Logo} from "../components";
 import mainLogo from "../assets/images/main.svg";
 import Wrapper from "../assets/wrappers/LandingPage";
+import { Link } from "react-router-dom";
 // import styled from "styled-components";
 
 const Landing = () => {
@@ -20,7 +21,7 @@ const Landing = () => {
             Million Job Seekers! Reach 250M Job Seekers. Post Job. Hire Local
             Talent. Post a Job in Minutes. Number 1 Job Site.
           </p>
-          <button className="btn btn-hero">Login/Register</button>
+          <Link to='/register' className="btn btn-hero">Login/Register</Link>
         </div>
         <img src={mainLogo} alt="jsmain" className="img main-img" />
       </div>
