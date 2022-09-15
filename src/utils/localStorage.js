@@ -1,5 +1,3 @@
-import { json } from "react-router";
-
 export const addToLocalStorage = (user) => {
   localStorage.setItem("user", JSON.stringify(user));
 };
