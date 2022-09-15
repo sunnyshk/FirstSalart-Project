@@ -13,7 +13,7 @@ const initialState = {
 };
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { user, isLoading } = useSelector(store => store.user);
+  const { user, isLoading } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -64,8 +64,8 @@ const Register = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block">
-          Submit
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Submit"}
         </button>
         <p>
           {values.isMember ? "Not a member yet?" : "Already a member?"}
