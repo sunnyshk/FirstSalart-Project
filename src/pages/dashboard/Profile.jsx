@@ -17,7 +17,7 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, lastName, location } = userData;
-    if (!user || !email || !location || !lastName) {
+    if (!name || !email || !location || !lastName) {
       toast.error("Please fill out all details");
       return;
     }

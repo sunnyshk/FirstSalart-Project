@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-  "user/registerUser",
+  "user/loginUser",
   async (user, thunkAPI) => {
     try {
       const res = await customFetch.post("/auth/login", user);
@@ -54,15 +54,17 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [registerUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       const { user } = payload;
       state.isLoading = false;
       state.user = user;
       addToLocalStorage(user);
-      toast.success(`Hello ${user.name} Thanks for registering`);
+      toast.success(`${user.name} Thanks for registering`);
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      toast.error(payload);
+      toast.error("Something went wrong");
+      console.log(payload);
     },
     [loginUser.pending]: (state) => {
       state.isLoading = true;
@@ -72,7 +74,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       addToLocalStorage(user);
-      toast.success(`Welcome ${user.name}`);
+      toast.success(`Welcome Back ${user.name}`);
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
