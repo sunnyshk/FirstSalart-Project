@@ -7,6 +7,8 @@ import {
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
 
+let token = "";
+
 const initialState = {
   isLoading: false,
   isSidebarOpen: false,
@@ -36,6 +38,23 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (user, thunkAPI) => {
+    try {
+      const res = await customFetch.patch("/auth/updateUser", user, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.respose.data.msg);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -54,7 +73,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [registerUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       const { user } = payload;
       state.isLoading = false;
       state.user = user;
@@ -70,6 +89,9 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
+      // console.log(payload)
+      token += payload.token;
+      console.log(token);
       const { user } = payload;
       state.isLoading = false;
       state.user = user;
@@ -77,6 +99,20 @@ const userSlice = createSlice({
       toast.success(`Welcome Back ${user.name}`);
     },
     [loginUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+    [updateUser.pending]: (state) => {
+      state.isLoading = false;
+    },
+    [updateUser.fulfilled]: (state, { payload }) => {
+      const { user } = payload;
+      state.isLoading = false;
+      state.user = user;
+      addToLocalStorage(user);
+      toast.success("Update successfull");
+    },
+    [updateUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
