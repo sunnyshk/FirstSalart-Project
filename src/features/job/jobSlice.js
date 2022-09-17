@@ -23,7 +23,8 @@ export const createJob = createAsyncThunk(
     try {
       const res = await customFetch.post("/jobs", job, {
         headers: {
-          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+          `,
         },
       });
       thunkAPI.dispatch(clearValues);
