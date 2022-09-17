@@ -60,6 +60,24 @@ export const deleteJob = createAsyncThunk(
   }
 );
 
+export const editJob = createAsyncThunk(
+  "/job/editJob",
+  async ({ jobId, job }, thunkAPI) => {
+    try {
+      const res = await customFetch.patch(`/jobs/${jobId}`, job, {
+        headers: {
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+        `,
+        },
+      });
+      thunkAPI.dispatch(clearValues());
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Something went wrong");
+    }
+  }
+);
+
 const jobSlice = createSlice({
   name: "job",
   initialState,
@@ -69,6 +87,13 @@ const jobSlice = createSlice({
     },
     clearValues: () => {
       return initialState;
+    },
+    setEditJob: (state, { payload }) => {
+      return {
+        ...state,
+        isEditing: true,
+        ...payload,
+      };
     },
   },
   extraReducers: {
@@ -83,15 +108,26 @@ const jobSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-    [deleteJob.fulfilled]:(state,{payload})=>{
-      toast.success("Job removed successfully")
+    [deleteJob.fulfilled]: (state, { payload }) => {
+      toast.success("Job removed successfully");
     },
-    [deleteJob.rejected]:(state,{payload})=>{
-       toast.error("Something went wrong")
-    }
+    [deleteJob.rejected]: (state, { payload }) => {
+      toast.error("Something went wrong");
+    },
+    [editJob.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [editJob.fulfilled]: (state) => {
+      state.isLoading = false;
+      toast.success("Job Modified!");
+    },
+    [editJob.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
   },
 });
 
-export const { handleChange, clearValues } = jobSlice.actions;
+export const { handleChange, clearValues, setEditJob } = jobSlice.actions;
 
 export default jobSlice.reducer;
