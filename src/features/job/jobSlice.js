@@ -24,7 +24,7 @@ export const createJob = createAsyncThunk(
     try {
       const res = await customFetch.post("/jobs", job, {
         headers: {
-          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y
           `,
         },
       });
@@ -47,7 +47,7 @@ export const deleteJob = createAsyncThunk(
     try {
       const res = await customFetch.delete(`/jobs/${jobId}`, {
         headers: {
-          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y
           `,
         },
       });
@@ -66,7 +66,7 @@ export const editJob = createAsyncThunk(
     try {
       const res = await customFetch.patch(`/jobs/${jobId}`, job, {
         headers: {
-          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y
         `,
         },
       });

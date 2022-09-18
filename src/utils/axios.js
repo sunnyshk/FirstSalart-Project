@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const custonFetch = axios.create({
-  baseURL: "https://jobs-api-06.herokuapp.com/api/v1",
+  baseURL: "https://firstsalary.herokuapp.com",
 });
 
 export default custonFetch;

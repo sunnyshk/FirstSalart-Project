@@ -28,7 +28,7 @@ export const getAllJobs = createAsyncThunk(
     try {
       const res = await custonFetch.get(url, {
         headers: {
-          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI1ZjFlNTU0Mzk4NTAwMDRjYjYxYWMiLCJuYW1lIjoic3VubnkxIiwiaWF0IjoxNjYzNDMxMTkxLCJleHAiOjE2NjYwMjMxOTF9.BuncTWAZshovC6w-hNqKD3Q_CDCv5WX5-Hs0es5jwsI
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y
           `,
         },
       });

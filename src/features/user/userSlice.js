@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user, thunkAPI) => {
     try {
-      const res = await customFetch.post("/auth/register", user);
+      const res = await customFetch.post("/register", user);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.respose.data.msg);
@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
     try {
-      const res = await customFetch.post("/auth/login", user);
+      const res = await customFetch.post("/login", user);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.respose.data.msg);
@@ -43,9 +43,9 @@ export const updateUser = createAsyncThunk(
   "user/updateUser",
   async (user, thunkAPI) => {
     try {
-      const res = await customFetch.patch("/auth/updateUser", user, {
+      const res = await customFetch.patch("/updateUser", user, {
         headers: {
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y`,
         },
       });
       return res.data;
