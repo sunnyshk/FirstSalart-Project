@@ -39,6 +39,23 @@ export const getAllJobs = createAsyncThunk(
   }
 );
 
+export const showStats = createAsyncThunk(
+  "/allJobs/showStats",
+  async (_, thunkAPI) => {
+    try {
+      const res = await custonFetch.get("/jobs/stats", {
+        headers: {
+          authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI2OTdhOThkYzI5MGJmMmRkNDY2YjYiLCJuYW1lIjoic3VubnkiLCJpYXQiOjE2NjM0NzM1NzcsImV4cCI6MTY2NjA2NTU3N30.veVBrkbD-SZU8O9NV4DvgOwF05HEvPzQOEkcERfS79Y`,
+        },
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Something went wrong");
+    }
+  }
+);
+
 const allJobsSlice = createSlice({
   name: "allJobs",
   initialState,
@@ -59,6 +76,18 @@ const allJobsSlice = createSlice({
       state.jobs = payload.jobs;
     },
     [getAllJobs.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+    [showStats.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [showStats.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.stats = payload.defaultStats;
+      state.monthlyApplications = payload.monthlyApplications
+    },
+    [showStats.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
