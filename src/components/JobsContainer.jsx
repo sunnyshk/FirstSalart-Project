@@ -6,11 +6,11 @@ import Loading from "./Loading";
 import { useEffect } from "react";
 import { getAllJobs } from "../features/allJobs/allJobsSlice";
 const JobsContainer = () => {
-  const { jobs, isLoading } = useSelector((store) => store.allJobs);
+  const { jobs, isLoading, search,searchStatus, searchType, sort } = useSelector((store) => store.allJobs);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllJobs());
-  }, []);
+  }, [search,searchStatus, searchType, sort]);
   if (isLoading) {
     return <Loading center />;
   }
